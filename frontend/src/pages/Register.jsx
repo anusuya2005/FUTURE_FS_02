@@ -84,9 +84,7 @@ function Register() {
               />
             </div>
           )}
-          <button className="btn-primary" type="submit">
-            Create Account
-          </button>
+          <button className="btn-primary" type="submit">Create Account</button>
         </form>
 
         <div className="auth-link">

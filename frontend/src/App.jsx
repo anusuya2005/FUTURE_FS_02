@@ -14,14 +14,21 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public routes - anyone can access */}
         <Route path="/" element={<ContactForm />} />
+        <Route path="/contact" element={<ContactForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* Protected route - only admin can access */}
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>
         } />
+
+        {/* Any unknown URL goes to contact form */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
