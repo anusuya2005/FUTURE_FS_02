@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
+import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ContactForm from './pages/ContactForm';
+import TrackStatus from './pages/TrackStatus';
 
 const ProtectedRoute = ({ children }) => {
   const { token } = useAuth();
@@ -14,20 +16,23 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public routes - anyone can access */}
-        <Route path="/" element={<ContactForm />} />
+        {/* Landing page - first thing everyone sees */}
+        <Route path="/" element={<Landing />} />
+
+        {/* Customer routes */}
         <Route path="/contact" element={<ContactForm />} />
+        <Route path="/track" element={<TrackStatus />} />
+
+        {/* Admin routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        {/* Protected route - only admin can access */}
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard />
           </ProtectedRoute>
         } />
 
-        {/* Any unknown URL goes to contact form */}
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
