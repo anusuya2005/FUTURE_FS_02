@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function ContactForm() {
@@ -10,6 +10,7 @@ function ContactForm() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,96 +33,128 @@ function ContactForm() {
   return (
     <div className="contact-wrapper">
       <div className="contact-card">
+
+        {/* Header */}
         <div className="contact-header">
-          <h2>📬 Contact Us</h2>
+          <div className="contact-icon">📬</div>
+          <h2>Contact Us</h2>
           <p>Fill the form and we'll get back to you shortly!</p>
         </div>
 
+        {/* Success Message */}
         {success && (
           <div className="success-msg">
-            ✅ Message sent! We'll contact you soon.
+            ✅ Message sent! Check your email for confirmation.
+            We'll get back to you soon.
           </div>
         )}
-        {error && <div className="error-msg">⚠️ {error}</div>}
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Full Name *</label>
-            <input
-              value={form.name}
-              onChange={e => setForm({ ...form, name: e.target.value })}
-              required
-              placeholder="Your full name"
-            />
+        {/* Error Message */}
+        {error && (
+          <div className="error-msg">
+            ⚠️ {error}
           </div>
-          <div className="form-group">
-            <label>Email Address *</label>
-            <input
-              type="email"
-              value={form.email}
-              onChange={e => setForm({ ...form, email: e.target.value })}
-              required
-              placeholder="your@email.com"
-            />
-          </div>
-          <div className="form-group">
-            <label>Phone Number</label>
-            <input
-              value={form.phone}
-              onChange={e => setForm({ ...form, phone: e.target.value })}
-              placeholder="+91 XXXXX XXXXX"
-            />
-          </div>
-          <div className="form-group">
-            <label>How did you find us?</label>
-            <select
-              value={form.source}
-              onChange={e => setForm({ ...form, source: e.target.value })}
+        )}
+
+        {/* Form */}
+        {!success && (
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Full Name *</label>
+              <input
+                value={form.name}
+                onChange={e => setForm({ ...form, name: e.target.value })}
+                required
+                placeholder="Your full name"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Email Address *</label>
+              <input
+                type="email"
+                value={form.email}
+                onChange={e => setForm({ ...form, email: e.target.value })}
+                required
+                placeholder="your@email.com"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Phone Number</label>
+              <input
+                value={form.phone}
+                onChange={e => setForm({ ...form, phone: e.target.value })}
+                placeholder="+91 XXXXX XXXXX"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>How did you find us?</label>
+              <select
+                value={form.source}
+                onChange={e => setForm({ ...form, source: e.target.value })}
+              >
+                <option>Website</option>
+                <option>Social Media</option>
+                <option>Referral</option>
+                <option>Email</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Message / Requirements</label>
+              <textarea
+                rows="3"
+                value={form.notes}
+                onChange={e => setForm({ ...form, notes: e.target.value })}
+                placeholder="Tell us about your requirements..."
+              />
+            </div>
+
+            <button
+              className="btn-primary"
+              type="submit"
+              disabled={loading}
             >
-              <option>Website</option>
-              <option>Social Media</option>
-              <option>Referral</option>
-              <option>Email</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label>Message / Requirements</label>
-            <textarea
-              rows="3"
-              value={form.notes}
-              onChange={e => setForm({ ...form, notes: e.target.value })}
-              placeholder="Tell us about your requirements..."
-            />
-          </div>
+              {loading ? 'Sending...' : 'Send Message 🚀'}
+            </button>
+          </form>
+        )}
 
+        {/* After success - show track status button */}
+        {success && (
           <button
             className="btn-primary"
-            type="submit"
-            disabled={loading}
+            onClick={() => navigate('/track')}
+            style={{ marginTop: '8px' }}
           >
-            {loading ? 'Sending...' : 'Send Message 🚀'}
+            🔍 Track My Application
           </button>
-        </form>
+        )}
 
-        {/* Admin link - subtle, not obvious to customers */}
-        <div style={{
-          textAlign: 'center',
-          marginTop: '24px',
-          paddingTop: '20px',
-          borderTop: '1px solid #e2e8f0'
-        }}>
-          <Link
-            to="/login"
+        {/* Back to Home */}
+        <div style={{ textAlign: 'center', marginTop: '24px' }}>
+          <button
+            onClick={() => navigate('/')}
             style={{
+              background: 'none',
+              border: 'none',
               color: '#94a3b8',
-              fontSize: '12px',
-              textDecoration: 'none'
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontFamily: 'inherit',
+              fontWeight: '500',
+              transition: 'color 0.2s'
             }}
+            onMouseEnter={e => e.currentTarget.style.color = '#6366f1'}
+            onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
           >
-            Admin Access
-          </Link>
+            ← Back to Home
+          </button>
         </div>
+
       </div>
     </div>
   );
