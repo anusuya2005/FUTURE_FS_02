@@ -6,27 +6,24 @@ const https = require('https');
 
 const app = express();
 
-// CORS - only allow our frontend
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://future-fs-02-5ey2cmf75-anusuya2005s-projects.vercel.app/'
+    'https://future-fs-02-fqpklg466-anusuya2005s-projects.vercel.app',
+    'https://future-fs-02-5ey2cmf75-anusuya2005s-projects.vercel.app'
   ],
   credentials: true
 }));
 
 app.use(express.json());
 
-// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/leads', require('./routes/leadRoutes'));
 
-// Test route
 app.get('/', (req, res) => {
   res.send('Mini CRM Backend is Running! 🚀');
 });
 
-// Keep Render awake - pings every 14 minutes
 const keepAlive = () => {
   setInterval(() => {
     https.get(
@@ -40,13 +37,12 @@ const keepAlive = () => {
   }, 14 * 60 * 1000);
 };
 
-// Connect to MongoDB then start server
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB Connected');
     app.listen(process.env.PORT || 5000, () => {
       console.log(`✅ Server running on port ${process.env.PORT || 5000}`);
-      keepAlive(); // Start keep alive after server starts
+      keepAlive();
     });
   })
   .catch((err) => console.log('❌ DB Connection Error:', err));
