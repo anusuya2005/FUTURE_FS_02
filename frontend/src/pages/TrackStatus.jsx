@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-
+import API_URL from '../config';
 function TrackStatus() {
   const [email, setEmail] = useState('');
   const [leads, setLeads] = useState([]);
@@ -22,7 +22,7 @@ function TrackStatus() {
 
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/leads/track/${searchEmail}`
+        `${API_URL}/api/leads/track/${searchEmail}`
       );
       setLeads(res.data);
       setSearched(true);

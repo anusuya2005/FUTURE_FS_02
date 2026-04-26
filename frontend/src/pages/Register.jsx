@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import API_URL from '../config';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ function Register() {
 
   // Check if any admin already exists
   useEffect(() => {
-    axios.get('http://localhost:5000/api/auth/check')
+    axios.get(`${API_URL}/api/auth/check`)
       .then(res => setAdminExists(res.data.exists))
       .catch(() => {});
   }, []);
@@ -27,7 +28,7 @@ function Register() {
       if (adminExists) payload.secretKey = secretKey;
 
       const res = await axios.post(
-        'http://localhost:5000/api/auth/register',
+        `${API_URL}/api/auth/register`,
         payload
       );
       login(res.data);

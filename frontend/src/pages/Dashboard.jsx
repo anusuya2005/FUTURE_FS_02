@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
+import API_URL from '../config';
 
 function Dashboard() {
   const { token } = useAuth();
@@ -15,7 +16,7 @@ function Dashboard() {
 
   const fetchLeads = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/leads', {
+      const res = await axios.get(`${API_URL}/api/leads`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setLeads(res.data);
@@ -48,7 +49,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this lead?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/leads/${id}`, {
+      await axios.delete(`${API_URL}/api/leads/${editLead._id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchLeads();

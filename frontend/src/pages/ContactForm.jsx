@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import API_URL from '../config';
 function ContactForm() {
   const [form, setForm] = useState({
     name: '', email: '', phone: '',
@@ -17,7 +17,7 @@ function ContactForm() {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/leads', form);
+      await axios.post(`${API_URL}/api/leads`, form);
       setSuccess(true);
       setForm({
         name: '', email: '', phone: '',
