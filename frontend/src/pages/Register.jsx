@@ -13,7 +13,6 @@ function Register() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  // Check if any admin already exists
   useEffect(() => {
     axios.get(`${API_URL}/api/auth/check`)
       .then(res => setAdminExists(res.data.exists))
@@ -43,11 +42,14 @@ function Register() {
       <div className="auth-card">
         <div className="auth-logo">📊</div>
         <h2>Create Admin</h2>
-        <p className="auth-subtitle">Mini CRM — Lead Management System</p>
+        <p className="auth-subtitle">
+          Mini CRM — Lead Management System
+        </p>
 
         {adminExists && (
           <div className="secret-key-info">
-            🔒 An admin already exists. You need the <strong>Secret Key</strong> to create another admin account.
+            🔒 An admin already exists. You need the
+            <strong> Secret Key</strong> to create another admin.
           </div>
         )}
 
@@ -85,11 +87,30 @@ function Register() {
               />
             </div>
           )}
-          <button className="btn-primary" type="submit">Create Account</button>
+          <button className="btn-primary" type="submit">
+            Create Account
+          </button>
         </form>
 
         <div className="auth-link">
-          Already have account? <Link to="/login">Login here</Link>
+          Already have account?{' '}
+          <Link to="/login">Login here</Link>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '16px' }}>
+          <button
+            onClick={() => navigate('/')}
+            style={{
+              background: 'none', border: 'none',
+              color: '#94a3b8', cursor: 'pointer',
+              fontSize: '14px', fontFamily: 'inherit',
+              fontWeight: '500'
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = '#6366f1'}
+            onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
+          >
+            ← Back to Home
+          </button>
         </div>
       </div>
     </div>

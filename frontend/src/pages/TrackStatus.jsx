@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import API_URL from '../config';
+
 function TrackStatus() {
   const [email, setEmail] = useState('');
   const [leads, setLeads] = useState([]);
@@ -35,13 +36,13 @@ function TrackStatus() {
     }
   };
 
-  const getStatusColor = (status) => {
-    const colors = {
-      New: { bg: '#eff6ff', color: '#1d4ed8', border: '#bfdbfe', icon: '🆕' },
+  const getStatusStyle = (status) => {
+    const styles = {
+      New:       { bg: '#eff6ff', color: '#1d4ed8', border: '#bfdbfe', icon: '🆕' },
       Contacted: { bg: '#fffbeb', color: '#b45309', border: '#fde68a', icon: '📞' },
       Converted: { bg: '#f0fdf4', color: '#166534', border: '#bbf7d0', icon: '✅' }
     };
-    return colors[status] || colors.New;
+    return styles[status] || styles.New;
   };
 
   const getProgressWidth = (status) => {
@@ -50,11 +51,7 @@ function TrackStatus() {
   };
 
   const getProgressColor = (status) => {
-    const colors = {
-      New: '#6366f1',
-      Contacted: '#f59e0b',
-      Converted: '#10b981'
-    };
+    const colors = { New: '#6366f1', Contacted: '#f59e0b', Converted: '#10b981' };
     return colors[status] || '#6366f1';
   };
 
@@ -132,14 +129,13 @@ function TrackStatus() {
               Found {leads.length} application{leads.length > 1 ? 's' : ''}
             </h3>
 
-            {leads.map((lead, i) => {
-              const s = getStatusColor(lead.status);
+            {leads.map((lead) => {
+              const s = getStatusStyle(lead.status);
               return (
                 <div key={lead._id} style={{
                   border: '1.5px solid #e2e8f0',
                   borderRadius: '14px', padding: '24px',
-                  marginBottom: '16px',
-                  background: '#fafbff'
+                  marginBottom: '16px', background: '#fafbff'
                 }}>
                   {/* Lead Header */}
                   <div style={{
@@ -160,9 +156,12 @@ function TrackStatus() {
                         fontSize: '12px', color: '#94a3b8',
                         marginTop: '3px'
                       }}>
-                        Submitted {new Date(lead.createdAt).toLocaleDateString('en-IN', {
-                          day: 'numeric', month: 'short', year: 'numeric'
-                        })}
+                        Submitted {new Date(lead.createdAt)
+                          .toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
                       </div>
                     </div>
                     <div style={{
@@ -178,13 +177,16 @@ function TrackStatus() {
                   {/* Progress Bar */}
                   <div style={{ marginBottom: '16px' }}>
                     <div style={{
-                      display: 'flex', justifyContent: 'space-between',
+                      display: 'flex',
+                      justifyContent: 'space-between',
                       marginBottom: '8px'
                     }}>
                       {['New', 'Contacted', 'Converted'].map((step) => (
                         <span key={step} style={{
                           fontSize: '11px', fontWeight: '600',
-                          color: lead.status === step ? getProgressColor(step) : '#94a3b8'
+                          color: lead.status === step
+                            ? getProgressColor(step)
+                            : '#94a3b8'
                         }}>
                           {step}
                         </span>
@@ -244,6 +246,8 @@ function TrackStatus() {
               fontSize: '14px', fontFamily: 'inherit',
               fontWeight: '500'
             }}
+            onMouseEnter={e => e.currentTarget.style.color = '#6366f1'}
+            onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
           >
             ← Back to Home
           </button>

@@ -35,7 +35,7 @@ function Dashboard() {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/api/leads/${editLead._id}`,
+        `${API_URL}/api/leads/${editLead._id}`,
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -49,7 +49,7 @@ function Dashboard() {
   const handleDelete = async (id) => {
     if (!window.confirm('Delete this lead?')) return;
     try {
-      await axios.delete(`${API_URL}/api/leads/${editLead._id}`, {
+      await axios.delete(`${API_URL}/api/leads/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchLeads();
@@ -143,8 +143,9 @@ function Dashboard() {
             <div className="table-wrapper">
               {filtered.length === 0 ? (
                 <div className="empty-state">
-                  <div style={{ fontSize: '48px' }}>📭</div>
+                  <div className="empty-icon">📭</div>
                   <p>No leads found.</p>
+                  <span>Leads will appear here when customers submit the contact form</span>
                 </div>
               ) : (
                 <table>
@@ -165,7 +166,9 @@ function Dashboard() {
                           <div className="lead-name">{lead.name}</div>
                           <div className="lead-email">{lead.email}</div>
                         </td>
-                        <td className="hide-mobile">{lead.phone || '—'}</td>
+                        <td className="hide-mobile">
+                          {lead.phone || '—'}
+                        </td>
                         <td className="hide-mobile">{lead.source}</td>
                         <td>
                           <span className={`badge ${lead.status}`}>
@@ -176,9 +179,13 @@ function Dashboard() {
                           </span>
                         </td>
                         <td className="hide-mobile">
-                          {new Date(lead.createdAt).toLocaleDateString('en-IN', {
-                            day: 'numeric', month: 'short', year: 'numeric'
-                          })}
+                          {new Date(lead.createdAt).toLocaleDateString(
+                            'en-IN', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric'
+                            }
+                          )}
                         </td>
                         <td>
                           <div className="action-buttons">
@@ -218,16 +225,9 @@ function Dashboard() {
               >✕</button>
             </div>
 
-            <div style={{
-              background: '#f8fafc',
-              padding: '12px 16px',
-              borderRadius: '10px',
-              marginBottom: '20px'
-            }}>
-              <div style={{ fontWeight: 600 }}>{editLead.name}</div>
-              <div style={{ color: '#94a3b8', fontSize: '13px' }}>
-                {editLead.email}
-              </div>
+            <div className="lead-preview">
+              <div className="lead-preview-name">{editLead.name}</div>
+              <div className="lead-preview-email">{editLead.email}</div>
             </div>
 
             <div className="form-group">
@@ -259,7 +259,10 @@ function Dashboard() {
               >
                 Cancel
               </button>
-              <button className="btn-save" onClick={handleUpdate}>
+              <button
+                className="btn-save"
+                onClick={handleUpdate}
+              >
                 Save Changes
               </button>
             </div>

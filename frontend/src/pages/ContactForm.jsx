@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_URL from '../config';
+
 function ContactForm() {
   const [form, setForm] = useState({
     name: '', email: '', phone: '',
@@ -34,29 +35,22 @@ function ContactForm() {
     <div className="contact-wrapper">
       <div className="contact-card">
 
-        {/* Header */}
         <div className="contact-header">
           <div className="contact-icon">📬</div>
           <h2>Contact Us</h2>
           <p>Fill the form and we'll get back to you shortly!</p>
         </div>
 
-        {/* Success Message */}
         {success && (
           <div className="success-msg">
             ✅ Message sent! Check your email for confirmation.
-            We'll get back to you soon.
           </div>
         )}
 
-        {/* Error Message */}
         {error && (
-          <div className="error-msg">
-            ⚠️ {error}
-          </div>
+          <div className="error-msg">⚠️ {error}</div>
         )}
 
-        {/* Form */}
         {!success && (
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -68,7 +62,6 @@ function ContactForm() {
                 placeholder="Your full name"
               />
             </div>
-
             <div className="form-group">
               <label>Email Address *</label>
               <input
@@ -79,7 +72,6 @@ function ContactForm() {
                 placeholder="your@email.com"
               />
             </div>
-
             <div className="form-group">
               <label>Phone Number</label>
               <input
@@ -88,7 +80,6 @@ function ContactForm() {
                 placeholder="+91 XXXXX XXXXX"
               />
             </div>
-
             <div className="form-group">
               <label>How did you find us?</label>
               <select
@@ -102,7 +93,6 @@ function ContactForm() {
                 <option>Other</option>
               </select>
             </div>
-
             <div className="form-group">
               <label>Message / Requirements</label>
               <textarea
@@ -112,7 +102,6 @@ function ContactForm() {
                 placeholder="Tell us about your requirements..."
               />
             </div>
-
             <button
               className="btn-primary"
               type="submit"
@@ -123,7 +112,6 @@ function ContactForm() {
           </form>
         )}
 
-        {/* After success - show track status button */}
         {success && (
           <button
             className="btn-primary"
@@ -134,19 +122,14 @@ function ContactForm() {
           </button>
         )}
 
-        {/* Back to Home */}
         <div style={{ textAlign: 'center', marginTop: '24px' }}>
           <button
             onClick={() => navigate('/')}
             style={{
-              background: 'none',
-              border: 'none',
-              color: '#94a3b8',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontFamily: 'inherit',
-              fontWeight: '500',
-              transition: 'color 0.2s'
+              background: 'none', border: 'none',
+              color: '#94a3b8', cursor: 'pointer',
+              fontSize: '14px', fontFamily: 'inherit',
+              fontWeight: '500'
             }}
             onMouseEnter={e => e.currentTarget.style.color = '#6366f1'}
             onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
@@ -154,7 +137,6 @@ function ContactForm() {
             ← Back to Home
           </button>
         </div>
-
       </div>
     </div>
   );
