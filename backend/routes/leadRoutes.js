@@ -7,7 +7,7 @@ const sendEmail = require('../utils/sendEmail');
 // Live frontend URL
 const FRONTEND_URL = 'https://future-fs-02-fqpklg466-anusuya2005s-projects.vercel.app';
 
-// Email templates
+// Email template
 const getStatusEmail = (lead) => {
   const colors = {
     New: '#6366f1',
@@ -100,9 +100,24 @@ const getStatusEmail = (lead) => {
           </div>
           ` : ''}
 
+          <!-- Your Details -->
+          <div style="background:#f8fafc; border:1px solid #e2e8f0;
+            border-radius:12px; padding:20px 24px; margin-bottom:28px;">
+            <p style="margin:0 0 12px; color:#94a3b8; font-size:12px;
+              font-weight:700; text-transform:uppercase; letter-spacing:1px;">
+              Your Details
+            </p>
+            <p style="margin:0 0 6px; color:#475569; font-size:14px;">
+              📧 Email: <strong>${lead.email}</strong>
+            </p>
+            <p style="margin:0; color:#475569; font-size:14px;">
+              📱 Source: <strong>${lead.source}</strong>
+            </p>
+          </div>
+
           <!-- Track Status Button -->
           <div style="text-align:center; margin-bottom:28px;">
-            <a href="${FRONTEND_URL}/track?email=${lead.email}"
+            <a href="${FRONTEND_URL}/track"
               style="display:inline-block;
               background:linear-gradient(135deg,#6366f1,#8b5cf6);
               color:white; text-decoration:none;
@@ -113,9 +128,24 @@ const getStatusEmail = (lead) => {
             </a>
           </div>
 
+          <!-- Instructions -->
+          <div style="background:#eff6ff; border:1px solid #bfdbfe;
+            border-radius:10px; padding:16px 20px; margin-bottom:28px;">
+            <p style="margin:0 0 8px; color:#1d4ed8; font-size:13px;
+              font-weight:700;">
+              📌 How to track your status:
+            </p>
+            <p style="margin:0; color:#3b82f6; font-size:13px; line-height:1.6;">
+              1. Click the button above<br>
+              2. Enter your email: <strong>${lead.email}</strong><br>
+              3. Click Track My Application<br>
+              4. See your current status and updates
+            </p>
+          </div>
+
           <p style="color:#94a3b8; font-size:13px;
             text-align:center; margin:0; line-height:1.6;">
-            If you have questions, simply reply to this email.
+            If you have questions simply reply to this email.
             We are here to help!
           </p>
         </div>
@@ -144,7 +174,7 @@ router.get('/', protect, async (req, res) => {
   }
 });
 
-// GET lead by email (public - for status tracking)
+// GET lead by email (public - status tracking)
 router.get('/track/:email', async (req, res) => {
   try {
     const leads = await Lead.find({
@@ -178,7 +208,7 @@ router.post('/', async (req, res) => {
     // Send confirmation email
     await sendEmail({
       to: lead.email,
-      subject: '✅ We received your inquiry!',
+      subject: '✅ We received your inquiry — Mini CRM',
       html: getStatusEmail(lead)
     });
 
@@ -206,7 +236,7 @@ router.put('/:id', protect, async (req, res) => {
     if (oldLead.status !== updated.status) {
       await sendEmail({
         to: updated.email,
-        subject: `📬 Your application status: ${updated.status}`,
+        subject: `📬 Status Update: ${updated.status} — Mini CRM`,
         html: getStatusEmail(updated)
       });
     }
