@@ -50,6 +50,7 @@ body {
   color: var(--gray-800);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* ═══════════════════════════════════════
@@ -843,11 +844,7 @@ td {
 }
 
 tr:last-child td { border-bottom: none; }
-
-tbody tr {
-  transition: background 0.15s;
-}
-
+tbody tr { transition: background 0.15s; }
 tbody tr:hover { background: #fafbff; }
 
 .lead-name {
@@ -1101,45 +1098,190 @@ tbody tr:hover { background: #fafbff; }
 .sidebar-overlay.active { display: block; }
 
 /* ═══════════════════════════════════════
-   MOBILE RESPONSIVE
+   TABLET
 ═══════════════════════════════════════ */
 @media (max-width: 1024px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); }
-  .sidebar.open { transform: translateX(0); box-shadow: var(--shadow-xl); }
-  .main-content { margin-left: 0; }
-  .hamburger { display: flex; }
-  .page-content { padding: 16px; }
-
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
   }
-
-  .stat-card { padding: 18px; gap: 12px; }
-  .stat-icon { width: 44px; height: 44px; font-size: 20px; }
-  .stat-info h3 { font-size: 26px; }
-
-  .leads-card-header { padding: 16px; flex-direction: column; align-items: flex-start; }
-  .leads-controls { width: 100%; }
-  .search-input { width: 100%; }
-  .filter-select { width: 100%; }
-  .hide-mobile { display: none; }
-
-  .auth-card { padding: 36px 28px; }
-  .contact-card { padding: 36px 28px; }
-  .modal { padding: 24px; }
-  .topbar { padding: 14px 16px; }
-  .topbar-left h1 { font-size: 17px; }
 }
 
+/* ═══════════════════════════════════════
+   MOBILE
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* Sidebar hidden by default on mobile */
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+  }
+
+  /* Main content full width */
+  .main-content {
+    margin-left: 0 !important;
+    width: 100vw;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: flex !important;
+  }
+
+  /* Topbar */
+  .topbar {
+    padding: 12px 16px;
+  }
+
+  .topbar-left h1 {
+    font-size: 16px;
+  }
+
+  .topbar-left p {
+    font-size: 12px;
+  }
+
+  /* Page padding */
+  .page-content {
+    padding: 14px;
+  }
+
+  /* Stats 2 columns */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  /* Stat cards vertical */
+  .stat-card {
+    padding: 14px 12px;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+  }
+
+  .stat-info h3 {
+    font-size: 22px;
+    letter-spacing: -0.5px;
+  }
+
+  .stat-info p {
+    font-size: 11px;
+  }
+
+  /* Leads card */
+  .leads-card-header {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .leads-card-header h2 {
+    font-size: 15px;
+  }
+
+  .leads-controls {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .search-input {
+    width: 100% !important;
+    font-size: 14px;
+  }
+
+  .filter-select {
+    width: 100% !important;
+    font-size: 14px;
+  }
+
+  /* Hide columns on mobile */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  th {
+    padding: 10px 12px;
+    font-size: 10px;
+  }
+
+  td {
+    padding: 12px 12px;
+    font-size: 13px;
+  }
+
+  .lead-name { font-size: 13px; }
+  .lead-email { font-size: 11px; }
+
+  .btn-edit {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .btn-delete {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+
+  /* Auth cards */
+  .auth-card { padding: 32px 20px; }
+  .contact-card { padding: 32px 20px; }
+
+  /* Modal */
+  .modal { padding: 24px 18px; }
+
+  .modal-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-save, .btn-cancel {
+    width: 100%;
+  }
+}
+
+/* ═══════════════════════════════════════
+   SMALL MOBILE (iPhone SE)
+═══════════════════════════════════════ */
 @media (max-width: 480px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-  .auth-card { padding: 28px 20px; }
-  .contact-card { padding: 28px 20px; }
-  .stat-info h3 { font-size: 22px; }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px;
+  }
+
+  .stat-card { padding: 12px 8px; }
+  .stat-info h3 { font-size: 20px; }
+  .stat-info p { font-size: 10px; }
+
+  .auth-card { padding: 28px 16px; }
+  .contact-card { padding: 28px 16px; }
+
+  .topbar-left h1 { font-size: 14px; }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .btn-edit, .btn-delete {
+    width: 100%;
+    text-align: center;
+  }
 }
