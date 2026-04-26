@@ -14,6 +14,22 @@ A production-ready Client Lead Management System built with the MERN stack. Busi
 | ⚙️ Backend API | https://future-fs-02-backend-tcf7.onrender.com |
 | 📂 GitHub Repo | https://github.com/YOUR_USERNAME/FUTURE_FS_02 |
 
+## ⚠️ Important Note for Evaluators
+
+This project is hosted on Render free tier which sleeps after inactivity.
+
+**Before testing, please open this link first:**
+
+https://future-fs-02-backend-tcf7.onrender.com
+
+Wait until you see this message:
+
+    Mini CRM Backend is Running! 🚀
+
+Then open the main website. Everything will work instantly after that.
+
+The backend has a keep-alive system that pings itself every 14 minutes to stay awake during active use.
+
 ---
 
 ## 🔐 Evaluator Access
