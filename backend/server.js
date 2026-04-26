@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://future-fs-02-fqpklg466-anusuya2005s-projects.vercel.app'
+    'https://future-fs-02-5ey2cmf75-anusuya2005s-projects.vercel.app/'
   ],
   credentials: true
 }));

@@ -10,7 +10,7 @@ A production-ready Client Lead Management System built with the MERN stack. Busi
 
 | | Link |
 |---|---|
-| 🖥️ Live Website | https://future-fs-02-fqpklg466-anusuya2005s-projects.vercel.app |
+| 🖥️ Live Website | https://future-fs-02-5ey2cmf75-anusuya2005s-projects.vercel.app/ |
 | ⚙️ Backend API | https://future-fs-02-backend-tcf7.onrender.com |
 | 📂 GitHub Repo | https://github.com/YOUR_USERNAME/FUTURE_FS_02 |
 

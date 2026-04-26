@@ -5,7 +5,7 @@ const { protect } = require('../middleware/authMiddleware');
 const sendEmail = require('../utils/sendEmail');
 
 // Live frontend URL
-const FRONTEND_URL = 'https://future-fs-02-fqpklg466-anusuya2005s-projects.vercel.app';
+const FRONTEND_URL = 'https://future-fs-02-5ey2cmf75-anusuya2005s-projects.vercel.app/';
 
 // Email template
 const getStatusEmail = (lead) => {
