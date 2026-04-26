@@ -12,7 +12,7 @@ A production-ready Client Lead Management System built with the MERN stack. Busi
 |---|---|
 | 🖥️ Live Website | https://future-fs-02-5ey2cmf75-anusuya2005s-projects.vercel.app/ |
 | ⚙️ Backend API | https://future-fs-02-backend-tcf7.onrender.com |
-| 📂 GitHub Repo | https://github.com/YOUR_USERNAME/FUTURE_FS_02 |
+| 📂 GitHub Repo | https://github.com/anusuya2005/FUTURE_FS_02 |
 
 ## ⚠️ Important Note for Evaluators
 
@@ -36,7 +36,7 @@ The backend has a keep-alive system that pings itself every 14 minutes to stay a
 
 | Field | Value |
 |-------|-------|
-| Login URL | https://future-fs-02-fqpklg466-anusuya2005s-projects.vercel.app/login |
+| Login URL | https://future-fs-02-5ey2cmf75-anusuya2005s-projects.vercel.app/login |
 | Username | admin |
 | Password | Admin1234 |
 
