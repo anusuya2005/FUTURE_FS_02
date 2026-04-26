@@ -6,8 +6,11 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-  origin: '*',
-  credentials: false
+  origin: [
+    'http://localhost:5173',
+    'https://future-fs-02-fqpklg466-anusuya2005s-projects.vercel.app'
+  ],
+  credentials: true
 }));
 
 app.use(express.json());
