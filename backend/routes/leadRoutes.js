@@ -117,7 +117,7 @@ const getStatusEmail = (lead) => {
 
           <!-- Track Status Button -->
           <div style="text-align:center; margin-bottom:28px;">
-            <a href="${FRONTEND_URL}/track"
+            <a href="${FRONTEND_URL}"
               style="display:inline-block;
               background:linear-gradient(135deg,#6366f1,#8b5cf6);
               color:white; text-decoration:none;
