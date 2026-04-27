@@ -97,6 +97,34 @@ Navigate from the main website — do not open page URLs directly.
 | 📊 Dashboard | Login as admin first |
 
 ---
+## 📸 Screenshots
+
+### 🏠 Landing Page
+![Landing](screenshots/landing-page.png)
+
+### 📬 Contact Form
+![Contact](screenshots/contact-form.png)
+
+### ✅ Submission Success
+![Submission](screenshots/submission-success.png)
+
+### 📧 Email Notification
+![Email](screenshots/email-status.png)
+
+### 🔐 Admin Login
+![Login](screenshots/admin-login.png)
+
+### 📊 Admin Dashboard
+![Dashboard](screenshots/admin-dashboard.png)
+
+### ✏️ Edit Lead
+![Edit](screenshots/lead-edit.png)
+
+### 🔍 Track Page
+![Track Page](screenshots/track-page.png)
+
+### 📈 Track Status Result
+![Track Status](screenshots/track-status.png)
 
 ## 💡 What Is This Project?
 
