@@ -98,33 +98,52 @@ Navigate from the main website — do not open page URLs directly.
 
 ---
 ## 📸 Screenshots
+<p align="center">Here is a quick visual walkthrough of the application:</p>
 
 ### 🏠 Landing Page
-![Landing](screenshots/landing-page.png)
+<p align="center">
+  <img src="screenshots/landing-page.png" width="600"/>
+</p>
 
 ### 📬 Contact Form
-![Contact](screenshots/contact-form.png)
+<p align="center">
+  <img src="screenshots/contact-form.png" width="600"/>
+</p>
 
 ### ✅ Submission Success
-![Submission](screenshots/submission-success.png)
+<p align="center">
+  <img src="screenshots/submission-success.png" width="600"/>
+</p>
 
 ### 📧 Email Notification
-![Email](screenshots/email-status.png)
+<p align="center">
+  <img src="screenshots/email-status.png" width="600"/>
+</p>
 
 ### 🔐 Admin Login
-![Login](screenshots/admin-login.png)
+<p align="center">
+  <img src="screenshots/admin-login.png" width="600"/>
+</p>
 
 ### 📊 Admin Dashboard
-![Dashboard](screenshots/admin-dashboard.png)
+<p align="center">
+  <img src="screenshots/admin-dashboard.png" width="600"/>
+</p>
 
 ### ✏️ Edit Lead
-![Edit](screenshots/lead-edit.png)
+<p align="center">
+  <img src="screenshots/lead-edit.png" width="600"/>
+</p>
 
 ### 🔍 Track Page
-![Track Page](screenshots/track-page.png)
+<p align="center">
+  <img src="screenshots/track-page.png" width="600"/>
+</p>
 
 ### 📈 Track Status Result
-![Track Status](screenshots/track-status.png)
+<p align="center">
+  <img src="screenshots/track-status.png" width="600"/>
+</p>
 
 ## 💡 What Is This Project?
 
