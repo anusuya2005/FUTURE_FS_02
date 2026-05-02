@@ -142,7 +142,7 @@ Navigate from the main website — do not open page URLs directly.
 
 ### 📈 Track Status Result
 <p align="center">
-  <img src="screenshots/track-status.png" width="600"/>
+  <img src="screenshots/track-status.png" width="500"/>
 </p>
 
 ## 💡 What Is This Project?
@@ -370,6 +370,34 @@ During development the Mongoose pre-save hook for password hashing was throwing 
 ### 6. Email Track Link 404
 The email notification sent to customers included a direct link to the track status page. When customers clicked this link it opened the direct URL which returned a 404 error due to the Vercel routing issue mentioned above. This was solved by changing the email button to open the main landing page instead, from where users can navigate to the track status page without any 404 errors.
 
+### 7. Email Delivery Issue on Render Free Tier
+
+After deployment the email notification system 
+stopped working even though it worked perfectly 
+during local development. The error was 
+Connection timeout when trying to connect to 
+Gmail SMTP server.
+
+The reason is Render free tier randomly blocks 
+outgoing SMTP ports (465 and 587) which are 
+required to send emails. This is a known 
+limitation of free hosting platforms.
+
+The email system works correctly in local 
+development environment where there are no 
+port restrictions. The code and configuration 
+are correct — the issue is purely a hosting 
+platform limitation.
+
+Possible fixes for production use:
+- Upgrade to Render paid plan which removes 
+  port restrictions
+- Use a transactional email service like 
+  Brevo, SendGrid, or Mailgun which use 
+  HTTP API instead of SMTP ports
+- Use AWS SES which works reliably on all 
+  hosting platforms
+
 ---
 
 ## 🚀 Future Improvements
@@ -403,6 +431,17 @@ Currently notes are overwritten each time. A better approach would be to store a
 
 ### 10. Custom Domain
 Connect a custom domain name to the Vercel deployment so the website has a professional URL instead of the auto-generated Vercel URL. This would also fix the direct URL access issue since a custom domain with proper DNS configuration supports React Router paths.
+
+### 11. Reliable Email Service
+
+Replace Nodemailer Gmail SMTP with a proper 
+transactional email service like Brevo or 
+SendGrid. These services use HTTP API instead 
+of SMTP ports so they work on all hosting 
+platforms including Render free tier. They 
+also provide email delivery tracking, open 
+rates, and bounce handling which is useful 
+for a real CRM system.
 
 ---
 
