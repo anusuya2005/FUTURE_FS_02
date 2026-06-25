@@ -1,4 +1,4 @@
-# 📊 Mini CRM — Client Lead Management System
+# 📊 Mini CRM — Client Lead Management Systems
 
 > Built for **Future Interns | Full Stack Web Development | Task 2**
 
